@@ -5,7 +5,6 @@ using FFImageLoading.Views;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
-using System;
 
 namespace ClassLibraryExample.Droid.Adapter
 {

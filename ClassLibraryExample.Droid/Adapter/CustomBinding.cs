@@ -2,7 +2,6 @@
 using FFImageLoading.Views;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
-using System;
 
 namespace ClassLibraryExample.Droid.Adapter
 {

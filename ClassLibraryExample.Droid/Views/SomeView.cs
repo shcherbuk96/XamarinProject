@@ -13,8 +13,8 @@ namespace ClassLibraryExample.Droid.Views
     [Activity(Label = "SomeView")]
     public class SomeView : MvxAppCompatActivity<MainViewModel>
     {
-        MvxRecyclerView recyclerView;
-        SearchView searchView;
+        private MvxRecyclerView _recyclerView;
+        private SearchView _searchView;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -22,11 +22,11 @@ namespace ClassLibraryExample.Droid.Views
 
             SetContentView(Resource.Layout.activity_main);
 
-            recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.my_recycler_view);
-            searchView = FindViewById<SearchView>(Resource.Id.search_some_view);
+            _recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.my_recycler_view);
+            _searchView = FindViewById<SearchView>(Resource.Id.search_some_view);
 
-            var adapter = new MyAdapter((IMvxAndroidBindingContext)this.BindingContext);
-            recyclerView.Adapter = adapter;
+            var adapter = new MyAdapter((IMvxAndroidBindingContext)BindingContext);
+            _recyclerView.Adapter = adapter;
 
             //searchView.QueryTextChange += (s, e) => Toast.MakeText(this, e.NewText, ToastLength.Short).Show();
 
@@ -40,7 +40,7 @@ namespace ClassLibraryExample.Droid.Views
                 .For(v => v.ItemClick)
                 .To(vm => vm.ClickCommand);
 
-            set.Bind(searchView)
+            set.Bind(_searchView)
                 .For(v => v.Query)
                 .To(vm => vm.SearchMessage);
 
