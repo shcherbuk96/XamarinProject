@@ -1,6 +1,6 @@
 ﻿namespace ClassLibraryExample.Core.Pojo
 {
-    public class Hit
+    public class HitModel
     {
         public string LargeImageURL { get; set; }
         public int WebformatHeight { get; set; }

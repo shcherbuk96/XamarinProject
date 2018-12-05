@@ -1,4 +1,5 @@
 ﻿using ClassLibraryExample.Core.Service;
+using ClassLibraryExample.Core.ViewModels;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
@@ -17,8 +18,6 @@ namespace ClassLibraryExample.Core
                 .RegisterAsLazySingleton();
 
             RegisterAppStart<MainViewModel>();
-            // if you want to use a custom AppStart, you should replace the previous line with this one:
-            // RegisterCustomAppStart<MyCustomAppStart>();
         }
     }
 }

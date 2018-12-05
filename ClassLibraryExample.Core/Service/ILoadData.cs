@@ -6,6 +6,6 @@ namespace ClassLibraryExample.Core.Service
 {
     public interface ILoadData
     {
-        Task<IEnumerable<Hit>> GetDataAsync(string message);
+        Task<IEnumerable<HitModel>> GetDataAsync(string message);
     }
 }

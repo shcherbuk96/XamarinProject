@@ -9,11 +9,18 @@
 	<SearchView
         android:id="@+id/search_some_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+	    local:MvxBind="Button"/>
+
+	<Button
+		android:id="@+id/btn_some_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 	<mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView
 		android:id="@+id/my_recycler_view"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		local:MvxBind="ItemClick ClickCommand"
 		local:MvxItemTemplate="@layout/item_adapter" />
  </LinearLayout>

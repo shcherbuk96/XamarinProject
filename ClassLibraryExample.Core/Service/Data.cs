@@ -5,34 +5,34 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ClassLibraryExample.Core.Models;
+using MonkeyCache.LiteDB;
 
 namespace ClassLibraryExample.Core.Service
 {
     class Data : ILoadData
     {
 
-        public async Task<IEnumerable<Hit>> GetDataAsync(string message)
+        public async Task<IEnumerable<HitModel>> GetDataAsync(string message)
         {
+            Barrel.ApplicationId = Constants.NameDataBase;
+            Barrel.EncryptionKey = Constants.KeyDataBase;
+
             if (!CrossConnectivity.Current.IsConnected)
             {
                 //You are offline, notify the user
-                return null;
+                return Barrel.Current.Get<IEnumerable<HitModel>>(key: Constants.KeyDataBase);
             }
 
             using (var client = new HttpClient())
             {
-                //if (message != null)
-                //{
-                //    Constants.URL.Replace("cats", message);
-                    
-                //}
-
                 client.BaseAddress = new Uri(message);
                 var jsonResponce = await client.GetStringAsync(client.BaseAddress);
-                var responce = JsonConvert.DeserializeObject<ListHits>(jsonResponce);
+                var responce = JsonConvert.DeserializeObject<ListHitsModel>(jsonResponce);
 
                 if (responce != null)
-                {               
+                {
+                    Barrel.Current.Add(key: Constants.KeyDataBase, data: responce.Hits, expireIn: TimeSpan.FromDays(1));
                     return responce.Hits;
                 }
                 else
@@ -40,32 +40,6 @@ namespace ClassLibraryExample.Core.Service
                     return null;
                 }
             }
-
         }
-
-        //public Task<IEnumerable<Hit>> SearchGetDataAsync(string message)
-        //{
-        //    if (!CrossConnectivity.Current.IsConnected)
-        //    {
-        //        //You are offline, notify the user
-        //        return null;
-        //    }
-
-        //    using (var client = new HttpClient())
-        //    {
-        //        client.BaseAddress = new Uri(Constants.URL);
-        //        var jsonResponce = await client.GetStringAsync(client.BaseAddress);
-        //        var responce = JsonConvert.DeserializeObject<ListHits>(jsonResponce);
-
-        //        if (responce != null)
-        //        {
-        //            return responce.Hits;
-        //        }
-        //        else
-        //        {
-        //            return null;
-        //        }
-        //    }
-        //}
     }
 }

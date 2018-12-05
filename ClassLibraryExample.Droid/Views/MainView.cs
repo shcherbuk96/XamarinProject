@@ -1,7 +1,8 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Widget;
-using ClassLibraryExample.Core;
+using ClassLibraryExample.Core.Pojo;
+using ClassLibraryExample.Core.ViewModels;
 using ClassLibraryExample.Droid.Adapter;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.AppCompat;
@@ -11,10 +12,11 @@ using MvvmCross.Platforms.Android.Binding.BindingContext;
 namespace ClassLibraryExample.Droid.Views
 {
     [Activity(Label = "SomeView")]
-    public class SomeView : MvxAppCompatActivity<MainViewModel>
+    public class MainView : MvxAppCompatActivity<MainViewModel>
     {
         private MvxRecyclerView _recyclerView;
         private SearchView _searchView;
+        private Button _myButton;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -22,31 +24,32 @@ namespace ClassLibraryExample.Droid.Views
 
             SetContentView(Resource.Layout.activity_main);
 
+            _myButton = FindViewById<Button>(Resource.Id.btn_some_view);
             _recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.my_recycler_view);
             _searchView = FindViewById<SearchView>(Resource.Id.search_some_view);
 
-            var adapter = new MyAdapter((IMvxAndroidBindingContext)BindingContext);
+            var adapter = new MyAdapter((IMvxAndroidBindingContext) BindingContext, OnCommand);
             _recyclerView.Adapter = adapter;
 
-            //searchView.QueryTextChange += (s, e) => Toast.MakeText(this, e.NewText, ToastLength.Short).Show();
+            var set = this.CreateBindingSet<MainView, MainViewModel>();
 
-            
-            var set = this.CreateBindingSet<SomeView, MainViewModel>();
             set.Bind(adapter)
                 .For(v => v.ItemsSource)
                 .To(vm => vm.Lists);
 
-            set.Bind(adapter)
-                .For(v => v.ItemClick)
-                .To(vm => vm.ClickCommand);
+            set.Bind(_myButton)
+                .To(vm => vm.MyAwesomeCommand);
 
             set.Bind(_searchView)
                 .For(v => v.Query)
                 .To(vm => vm.SearchMessage);
 
             set.Apply();
+        }
 
-            
+        public void OnCommand(HitModel hitModel)
+        {
+            ViewModel?.ClickCommand.Execute(hitModel);
         }
     }
 }

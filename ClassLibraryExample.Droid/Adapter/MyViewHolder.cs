@@ -1,4 +1,5 @@
-﻿using Android.Views;
+﻿using System;
+using Android.Views;
 using Android.Widget;
 using ClassLibraryExample.Core.Pojo;
 using FFImageLoading.Views;
@@ -10,34 +11,47 @@ namespace ClassLibraryExample.Droid.Adapter
 {
     public class MyViewHolder : MvxRecyclerViewHolder
     {
+        private readonly Action<HitModel> _itemClickAction;
+
         public TextView Tags { get; set; }
         public TextView User { get; set; }
         public ImageViewAsync Image { get; set; }
 
-        public MyViewHolder(View itemView, IMvxAndroidBindingContext context) : base(itemView, context)
+        public MyViewHolder(View itemView, IMvxAndroidBindingContext context, Action<HitModel> itemClickAction) : base(
+            itemView, context)
         {
+            _itemClickAction = itemClickAction;
+
             Tags = itemView.FindViewById<TextView>(Resource.Id.item_tags);
             User = itemView.FindViewById<TextView>(Resource.Id.item_user);
             Image = itemView.FindViewById<ImageViewAsync>(Resource.Id.item_image);
 
+            itemView.Click += OnClick;
+
             this.DelayBind(() =>
             {
-                var set = this.CreateBindingSet<MyViewHolder, Hit>();
+                var set = this.CreateBindingSet<MyViewHolder, HitModel>();
+
 
                 set.Bind(Image)
-                .For("ImageAsync")
-                .To(v => v.LargeImageURL);                        
+                    .For("ImageAsync")
+                    .To(v => v.LargeImageURL);
 
                 set.Bind(Tags)
-                .For(l => l.Text)
-                .To(vm => vm.Tags);
+                    .For(l => l.Text)
+                    .To(vm => vm.Tags);
 
                 set.Bind(User)
-                .For(l => l.Text)
-                .To(vm => vm.User);
+                    .For(l => l.Text)
+                    .To(vm => vm.User);
 
                 set.Apply();
             });
+        }
+
+        private void OnClick(object sender, EventArgs e)
+        {
+            _itemClickAction.Invoke((HitModel)DataContext);
         }
     }
 }
