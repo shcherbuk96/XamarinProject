@@ -3,12 +3,12 @@ using FFImageLoading.Views;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
 
-namespace ClassLibraryExample.Droid.Adapter
+namespace ClassLibraryExample.Droid.Binding
 {
-    public class CustomBinding : MvxTargetBinding<ImageViewAsync, string>
+    public class ImageAsyncBinding : MvxTargetBinding<ImageViewAsync, string>
     {
 
-        public CustomBinding(ImageViewAsync image) : base(image)
+        public ImageAsyncBinding(ImageViewAsync image) : base(image)
         {
        
         }

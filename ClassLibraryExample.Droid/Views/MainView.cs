@@ -16,7 +16,6 @@ namespace ClassLibraryExample.Droid.Views
     {
         private MvxRecyclerView _recyclerView;
         private SearchView _searchView;
-        private Button _myButton;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -24,11 +23,10 @@ namespace ClassLibraryExample.Droid.Views
 
             SetContentView(Resource.Layout.activity_main);
 
-            _myButton = FindViewById<Button>(Resource.Id.btn_some_view);
             _recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.my_recycler_view);
             _searchView = FindViewById<SearchView>(Resource.Id.search_some_view);
 
-            var adapter = new MyAdapter((IMvxAndroidBindingContext) BindingContext, OnCommand);
+            var adapter = new MainAdapter((IMvxAndroidBindingContext) BindingContext, OnCommand);
             _recyclerView.Adapter = adapter;
 
             var set = this.CreateBindingSet<MainView, MainViewModel>();
@@ -36,9 +34,6 @@ namespace ClassLibraryExample.Droid.Views
             set.Bind(adapter)
                 .For(v => v.ItemsSource)
                 .To(vm => vm.Lists);
-
-            set.Bind(_myButton)
-                .To(vm => vm.MyAwesomeCommand);
 
             set.Bind(_searchView)
                 .For(v => v.Query)
@@ -49,7 +44,12 @@ namespace ClassLibraryExample.Droid.Views
 
         public void OnCommand(HitModel hitModel)
         {
-            ViewModel?.ClickCommand.Execute(hitModel);
+            ViewModel?.ClickItemCommand.Execute(hitModel);
+        }
+
+        public override void OnBackPressed()
+        {
+           
         }
     }
 }

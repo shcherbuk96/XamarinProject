@@ -24,31 +24,14 @@ namespace ClassLibraryExample.Core.ViewModels
             _navigationService = navigationService;
         }
 
-        private MvxCommand<HitModel> _clickCommand;
-        public MvxCommand<HitModel> ClickCommand => _clickCommand =
-            _clickCommand ?? new MvxCommand<HitModel>(OnClickCommand);
+        private MvxCommand<HitModel> _clickItemCommand;
+        public MvxCommand<HitModel> ClickItemCommand => _clickItemCommand =
+            _clickItemCommand ?? new MvxCommand<HitModel>(OnClickItemCommand);
 
-        private async void OnClickCommand(HitModel obj)
+        private async void OnClickItemCommand(HitModel obj)
         {
             await _navigationService.Navigate<DescriptionViewModel,HitModel>(obj);
         }
-
-        private MvxCommand _myAwesomeCommand;
-        public IMvxCommand MyAwesomeCommand
-        {
-            get
-            {
-                _myAwesomeCommand= _myAwesomeCommand ?? new MvxCommand(StartNextActivity);
-                return _myAwesomeCommand;
-            }
-        }
-
-        private async void StartNextActivity()
-        {
-            await _navigationService.Navigate<DescriptionViewModel>();
-        }
-
-
         public ObservableCollection<HitModel> Lists
         {
             get { return _lists; }

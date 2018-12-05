@@ -9,7 +9,7 @@ using MvvmCross.Platforms.Android.Binding.BindingContext;
 
 namespace ClassLibraryExample.Droid.Adapter
 {
-    public class MyViewHolder : MvxRecyclerViewHolder
+    public class MainViewHolder : MvxRecyclerViewHolder
     {
         private readonly Action<HitModel> _itemClickAction;
 
@@ -17,7 +17,7 @@ namespace ClassLibraryExample.Droid.Adapter
         public TextView User { get; set; }
         public ImageViewAsync Image { get; set; }
 
-        public MyViewHolder(View itemView, IMvxAndroidBindingContext context, Action<HitModel> itemClickAction) : base(
+        public MainViewHolder(View itemView, IMvxAndroidBindingContext context, Action<HitModel> itemClickAction) : base(
             itemView, context)
         {
             _itemClickAction = itemClickAction;
@@ -30,7 +30,7 @@ namespace ClassLibraryExample.Droid.Adapter
 
             this.DelayBind(() =>
             {
-                var set = this.CreateBindingSet<MyViewHolder, HitModel>();
+                var set = this.CreateBindingSet<MainViewHolder, HitModel>();
 
 
                 set.Bind(Image)

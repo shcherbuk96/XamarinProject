@@ -10,9 +10,8 @@ using MonkeyCache.LiteDB;
 
 namespace ClassLibraryExample.Core.Service
 {
-    class Data : ILoadData
+    public class Data : ILoadData
     {
-
         public async Task<IEnumerable<HitModel>> GetDataAsync(string message)
         {
             Barrel.ApplicationId = Constants.NameDataBase;

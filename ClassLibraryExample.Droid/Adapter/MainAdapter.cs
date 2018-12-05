@@ -7,11 +7,11 @@ using MvvmCross.Platforms.Android.Binding.BindingContext;
 
 namespace ClassLibraryExample.Droid.Adapter
 {
-    public class MyAdapter : MvxRecyclerAdapter
+    public class MainAdapter : MvxRecyclerAdapter
     {
         private readonly Action<HitModel> _itemClickAction;
 
-        public MyAdapter(IMvxAndroidBindingContext bindingContext, Action<HitModel> itemClickAction) : base(bindingContext)
+        public MainAdapter(IMvxAndroidBindingContext bindingContext, Action<HitModel> itemClickAction) : base(bindingContext)
         {
             _itemClickAction = itemClickAction;
         }
@@ -21,7 +21,7 @@ namespace ClassLibraryExample.Droid.Adapter
             var itemBindingContext = new MvxAndroidBindingContext(parent.Context, BindingContext.LayoutInflaterHolder);
             var view = InflateViewForHolder(parent, viewType, itemBindingContext);
 
-            return new MyViewHolder(view, itemBindingContext, _itemClickAction);
+            return new MainViewHolder(view, itemBindingContext, _itemClickAction);
         }
 
     }

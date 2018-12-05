@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -20,9 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-		android:paddingTop="8dp"
-        tools:text="TextView"
-        android:textSize="16sp" />
+        android:paddingTop="8dp"
+        android:textSize="16sp"
+        tools:text="TextView" />
 
     <TextView
         android:id="@+id/description_tags_text_view"
@@ -30,8 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:paddingTop="8dp"
-        tools:text="TextView"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:text="TextView" />
 
     <TextView
         android:id="@+id/description_likes_text_view"
@@ -39,8 +39,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:paddingTop="8dp"
-        tools:text="TextView"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:text="TextView" />
 
     <TextView
         android:id="@+id/description_comments_text_view"
@@ -48,16 +48,16 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:paddingTop="8dp"
-        tools:text="TextView"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:text="TextView" />
 
     <Button
         android:id="@+id/description_open_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        tools:text="TextView"
-        android:text="Open page" />
+        android:text="Open page"
+        tools:text="TextView" />
 
 
 </LinearLayout>

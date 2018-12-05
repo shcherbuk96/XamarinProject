@@ -60,9 +60,9 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapter\CustomBinding.cs" />
-    <Compile Include="Adapter\MyAdapter.cs" />
-    <Compile Include="Adapter\MyViewHolder.cs" />
+    <Compile Include="Binding\ImageAsyncBinding.cs" />
+    <Compile Include="Adapter\MainAdapter.cs" />
+    <Compile Include="Adapter\MainViewHolder.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
