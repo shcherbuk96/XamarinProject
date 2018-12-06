@@ -1,4 +1,6 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Widget;
 using ClassLibraryExample.Core;
@@ -17,7 +19,7 @@ namespace ClassLibraryExample.Droid.Views
         private TextView _tagsTextView;
         private TextView _likesTextView;
         private TextView _commentsTextView;
-
+        private Button _openWeButton;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -30,8 +32,18 @@ namespace ClassLibraryExample.Droid.Views
             _likesTextView = FindViewById<TextView>(Resource.Id.description_likes_text_view);
             _commentsTextView = FindViewById<TextView>(Resource.Id.description_comments_text_view);
             _photoImageViewAsync = FindViewById<ImageViewAsync>(Resource.Id.description_photo_image_view);
-            
+            _openWeButton = FindViewById<Button>(Resource.Id.description_open_btn);
+
             Binding();
+
+            _openWeButton.Click += ClickOpenPage;
+        }
+
+        private void ClickOpenPage(object sender, EventArgs e)
+        {
+            var url = Android.Net.Uri.Parse(ViewModel?.WebUrl);
+            var webIntent = new Intent(Intent.ActionView, url );
+            StartActivity(webIntent);
         }
 
         public void Binding()

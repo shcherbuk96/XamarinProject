@@ -11,7 +11,7 @@ using MvvmCross.Platforms.Android.Binding.BindingContext;
 
 namespace ClassLibraryExample.Droid.Views
 {
-    [Activity(Label = "SomeView")]
+    [Activity(Label = "PhotosView")]
     public class PhotosView : MvxAppCompatActivity<PhotosViewModel>
     {
         private MvxRecyclerView _recyclerView;
@@ -22,6 +22,7 @@ namespace ClassLibraryExample.Droid.Views
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.activity_photos);
+            
 
             _recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.recycler_photos_view);
             _searchView = FindViewById<SearchView>(Resource.Id.search_photos_view);
