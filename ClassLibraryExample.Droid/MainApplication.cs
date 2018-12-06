@@ -10,10 +10,8 @@ namespace ClassLibraryExample.Droid
     public class MainApplication : MvxAndroidApplication<Setup, App>
     {
         public MainApplication(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
-        {
-           
+        {           
         }
-
-       
+        
     }
 }

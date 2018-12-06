@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace ClassLibraryExample.Core.Service
 {
-    public interface ILoadData
+    public interface ILoadDataService
     {
-        Task<IEnumerable<HitModel>> GetDataAsync(string message);
+        Task<IEnumerable<HitModel>> GetDataAsync(string url);
     }
 }

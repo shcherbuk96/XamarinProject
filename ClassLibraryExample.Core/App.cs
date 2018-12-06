@@ -10,14 +10,14 @@ namespace ClassLibraryExample.Core
     {
         public override void Initialize()
         {
-            Mvx.RegisterType<ILoadData, Data>();
+            Mvx.RegisterType<ILoadDataService, DataService>();
 
             CreatableTypes()
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterAppStart<MainViewModel>();
+            RegisterAppStart<PhotosViewModel>();
         }
     }
 }

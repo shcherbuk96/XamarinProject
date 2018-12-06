@@ -10,9 +10,9 @@ using MonkeyCache.LiteDB;
 
 namespace ClassLibraryExample.Core.Service
 {
-    public class Data : ILoadData
+    public class DataService : ILoadDataService
     {
-        public async Task<IEnumerable<HitModel>> GetDataAsync(string message)
+        public async Task<IEnumerable<HitModel>> GetDataAsync(string url)
         {
             Barrel.ApplicationId = Constants.NameDataBase;
             Barrel.EncryptionKey = Constants.KeyDataBase;
@@ -25,7 +25,7 @@ namespace ClassLibraryExample.Core.Service
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(message);
+                client.BaseAddress = new Uri(url);
                 var jsonResponce = await client.GetStringAsync(client.BaseAddress);
                 var responce = JsonConvert.DeserializeObject<ListHitsModel>(jsonResponce);
 

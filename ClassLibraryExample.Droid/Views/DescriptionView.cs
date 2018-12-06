@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Widget;
+using ClassLibraryExample.Core;
 using ClassLibraryExample.Core.ViewModels;
 using FFImageLoading.Views;
 using MvvmCross.Binding.BindingContext;
@@ -29,7 +30,12 @@ namespace ClassLibraryExample.Droid.Views
             _likesTextView = FindViewById<TextView>(Resource.Id.description_likes_text_view);
             _commentsTextView = FindViewById<TextView>(Resource.Id.description_comments_text_view);
             _photoImageViewAsync = FindViewById<ImageViewAsync>(Resource.Id.description_photo_image_view);
+            
+            Binding();
+        }
 
+        public void Binding()
+        {
             var set = this.CreateBindingSet<DescriptionView, DescriptionViewModel>();
 
             set.Bind(_userTextView)
@@ -49,7 +55,7 @@ namespace ClassLibraryExample.Droid.Views
                 .To(vm => vm.Comments);
 
             set.Bind(_photoImageViewAsync)
-                .For("ImageAsync")
+                .For(Constants.ImageAsyncBindingName)
                 .To(vm => vm.PhotoUrl);
 
             set.Apply();

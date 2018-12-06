@@ -12,7 +12,7 @@ using MvvmCross.Platforms.Android.Binding.BindingContext;
 namespace ClassLibraryExample.Droid.Views
 {
     [Activity(Label = "SomeView")]
-    public class MainView : MvxAppCompatActivity<MainViewModel>
+    public class PhotosView : MvxAppCompatActivity<PhotosViewModel>
     {
         private MvxRecyclerView _recyclerView;
         private SearchView _searchView;
@@ -21,15 +21,20 @@ namespace ClassLibraryExample.Droid.Views
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.activity_main);
+            SetContentView(Resource.Layout.activity_photos);
 
-            _recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.my_recycler_view);
-            _searchView = FindViewById<SearchView>(Resource.Id.search_some_view);
+            _recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.recycler_photos_view);
+            _searchView = FindViewById<SearchView>(Resource.Id.search_photos_view);
 
-            var adapter = new MainAdapter((IMvxAndroidBindingContext) BindingContext, OnCommand);
+            var adapter = new PhotosAdapter((IMvxAndroidBindingContext) BindingContext, OnCommand);
             _recyclerView.Adapter = adapter;
 
-            var set = this.CreateBindingSet<MainView, MainViewModel>();
+            Binding(adapter);
+       
+        }
+        public void Binding(PhotosAdapter adapter)
+        {
+            var set = this.CreateBindingSet<PhotosView, PhotosViewModel>();
 
             set.Bind(adapter)
                 .For(v => v.ItemsSource)
@@ -41,7 +46,6 @@ namespace ClassLibraryExample.Droid.Views
 
             set.Apply();
         }
-
         public void OnCommand(HitModel hitModel)
         {
             ViewModel?.ClickItemCommand.Execute(hitModel);

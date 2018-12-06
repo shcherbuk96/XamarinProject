@@ -7,9 +7,9 @@ using MvvmCross.ViewModels;
 
 namespace ClassLibraryExample.Core.ViewModels
 {
-    public class MainViewModel : MvxViewModel
+    public class PhotosViewModel : MvxViewModel
     {
-        private readonly ILoadData _loadData;
+        private readonly ILoadDataService _loadDataService;
 
         private ObservableCollection<HitModel> _lists;
 
@@ -18,9 +18,9 @@ namespace ClassLibraryExample.Core.ViewModels
         private readonly IMvxNavigationService _navigationService;
 
 
-        public MainViewModel(ILoadData loadData, IMvxNavigationService navigationService)
+        public PhotosViewModel(ILoadDataService loadDataService, IMvxNavigationService navigationService)
         {
-            _loadData = loadData;
+            _loadDataService = loadDataService;
             _navigationService = navigationService;
         }
 
@@ -50,7 +50,7 @@ namespace ClassLibraryExample.Core.ViewModels
                 _searchMessage = value;
                 RaisePropertyChanged(() => SearchMessage);
 
-                Searchdata(_searchMessage);
+                SearchRequestToApi(_searchMessage);
             }
         }
 
@@ -58,19 +58,19 @@ namespace ClassLibraryExample.Core.ViewModels
         {
             base.ViewCreated();
 
-            DefaultData();
+            DefaultRequestToApi();
         }
 
-        public async void DefaultData()
+        public async void DefaultRequestToApi()
         {
-            Lists = new ObservableCollection<HitModel>(await _loadData.GetDataAsync(UrlApi("cats")));
+            Lists = new ObservableCollection<HitModel>(await _loadDataService.GetDataAsync(UrlApi(Constants.DefaultRequestToApi)));
         }
 
-        public async void Searchdata(string message)
+        public async void SearchRequestToApi(string message)
         {
-            Lists = new ObservableCollection<HitModel>(await _loadData.GetDataAsync(UrlApi(message)));
+            Lists = new ObservableCollection<HitModel>(await _loadDataService.GetDataAsync(UrlApi(message)));
         }
 
-        public static string UrlApi(string str) => $"https://pixabay.com/api/?key=10828462-e34b53653a419d947bfaba5d3&q={str}&image_type=photo/";
+        public static string UrlApi(string message) => $"https://pixabay.com/api/?key=10828462-e34b53653a419d947bfaba5d3&q={message}&image_type=photo/";
     }
 }

@@ -7,10 +7,8 @@ namespace ClassLibraryExample.Droid.Binding
 {
     public class ImageAsyncBinding : MvxTargetBinding<ImageViewAsync, string>
     {
-
         public ImageAsyncBinding(ImageViewAsync image) : base(image)
-        {
-       
+        {       
         }
 
         public override MvxBindingMode DefaultMode => MvxBindingMode.Default;

@@ -23,11 +23,11 @@ namespace ClassLibraryExample.Core.ViewModels
         {
             _hitModel = parameter;
 
-            User = $"User: {_hitModel.User}";
+            User = _hitModel.User;
             PhotoUrl = _hitModel.LargeImageURL;
-            Tags = $"Tags: {_hitModel.Tags}";
-            Likes = $"Likes: {_hitModel.Likes}";
-            Comments = $"Comments: {_hitModel.Comments}";
+            Tags = _hitModel.Tags;
+            Likes = _hitModel.Likes.ToString();
+            Comments = _hitModel.Comments.ToString();
             WebUrl = _hitModel.PageURL;
         }
 

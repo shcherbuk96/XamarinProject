@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.Views;
 using Android.Widget;
+using ClassLibraryExample.Core;
 using ClassLibraryExample.Core.Pojo;
 using FFImageLoading.Views;
 using MvvmCross.Binding.BindingContext;
@@ -9,32 +10,38 @@ using MvvmCross.Platforms.Android.Binding.BindingContext;
 
 namespace ClassLibraryExample.Droid.Adapter
 {
-    public class MainViewHolder : MvxRecyclerViewHolder
+    public class PhotosViewHolder : MvxRecyclerViewHolder
     {
         private readonly Action<HitModel> _itemClickAction;
 
+        private View _itemView;
         public TextView Tags { get; set; }
         public TextView User { get; set; }
         public ImageViewAsync Image { get; set; }
 
-        public MainViewHolder(View itemView, IMvxAndroidBindingContext context, Action<HitModel> itemClickAction) : base(
+        public PhotosViewHolder(View itemView, IMvxAndroidBindingContext context, Action<HitModel> itemClickAction) : base(
             itemView, context)
         {
+            _itemView = itemView;
             _itemClickAction = itemClickAction;
 
             Tags = itemView.FindViewById<TextView>(Resource.Id.item_tags);
             User = itemView.FindViewById<TextView>(Resource.Id.item_user);
             Image = itemView.FindViewById<ImageViewAsync>(Resource.Id.item_image);
 
-            itemView.Click += OnClick;
+            Binding();
 
+            _itemView.Click += OnClick;           
+        }
+
+        public void Binding()
+        {
             this.DelayBind(() =>
             {
-                var set = this.CreateBindingSet<MainViewHolder, HitModel>();
-
+                var set = this.CreateBindingSet<PhotosViewHolder, HitModel>();
 
                 set.Bind(Image)
-                    .For("ImageAsync")
+                    .For(Constants.ImageAsyncBindingName)
                     .To(v => v.LargeImageURL);
 
                 set.Bind(Tags)
@@ -52,6 +59,16 @@ namespace ClassLibraryExample.Droid.Adapter
         private void OnClick(object sender, EventArgs e)
         {
             _itemClickAction.Invoke((HitModel)DataContext);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _itemView.Click -= OnClick;
+            }
+
+            base.Dispose(disposing);
         }
     }
 }

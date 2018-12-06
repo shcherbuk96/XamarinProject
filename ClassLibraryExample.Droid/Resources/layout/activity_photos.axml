@@ -6,12 +6,12 @@
     android:orientation="vertical">
 
     <SearchView
-        android:id="@+id/search_some_view"
+        android:id="@+id/search_photos_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView
-        android:id="@+id/my_recycler_view"
+        android:id="@+id/recycler_photos_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         local:MvxBind="ItemClick ClickCommand"

@@ -11,7 +11,7 @@ namespace ClassLibraryExample.Droid
         protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
         {
             base.FillTargetFactories(registry);
-            registry.RegisterCustomBindingFactory<ImageViewAsync>("ImageAsync", imageViewAsync=> new ImageAsyncBinding(imageViewAsync));
+            registry.RegisterCustomBindingFactory<ImageViewAsync>(Constants.ImageAsyncBindingName, imageViewAsync=> new ImageAsyncBinding(imageViewAsync));
         }
     }
 }
