@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using ClassLibraryExample.Core.Pojo;
 using ClassLibraryExample.Core.Service;
 using MvvmCross.Commands;
@@ -49,26 +50,32 @@ namespace ClassLibraryExample.Core.ViewModels
             {
                 _searchMessage = value;
                 RaisePropertyChanged(() => SearchMessage);
-
-                SearchRequestToApi(_searchMessage);
+                
+                GetResponceFromSearchAsync();
             }
         }
 
-        public override void ViewCreated()
+        public async void GetResponceFromSearchAsync()
+        {
+            Lists = await SearchRequestToApiAsync(_searchMessage);
+        }
+
+
+        public override async void ViewCreated()
         {
             base.ViewCreated();
 
-            DefaultRequestToApi();
+            Lists = await DefaultRequestToApiAsync();
         }
 
-        public async void DefaultRequestToApi()
+        public async Task<ObservableCollection<HitModel>> DefaultRequestToApiAsync()
         {
-            Lists = new ObservableCollection<HitModel>(await _loadDataService.GetDataAsync(UrlApi(Constants.DefaultRequestToApi)));
+            return new ObservableCollection<HitModel>(await _loadDataService.GetDataAsync(UrlApi(Constants.DefaultRequestToApi)));
         }
 
-        public async void SearchRequestToApi(string message)
+        public async Task<ObservableCollection<HitModel>> SearchRequestToApiAsync(string message)
         {
-            Lists = new ObservableCollection<HitModel>(await _loadDataService.GetDataAsync(UrlApi(message)));
+            return new ObservableCollection<HitModel>(await _loadDataService.GetDataAsync(UrlApi(message)));
         }
 
         public static string UrlApi(string message) => $"https://pixabay.com/api/?key=10828462-e34b53653a419d947bfaba5d3&q={message}&image_type=photo/";

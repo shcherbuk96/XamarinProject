@@ -41,7 +41,7 @@ namespace ClassLibraryExample.Droid.Views
 
         private void ClickOpenPage(object sender, EventArgs e)
         {
-            var url = Android.Net.Uri.Parse(ViewModel?.WebUrl);
+            var url = Android.Net.Uri.Parse(ViewModel?.HitModel.PageURL);
             var webIntent = new Intent(Intent.ActionView, url );
             StartActivity(webIntent);
         }
@@ -52,23 +52,23 @@ namespace ClassLibraryExample.Droid.Views
 
             set.Bind(_userTextView)
                 .For(v => v.Text)
-                .To(vm => vm.User);
+                .To(vm => vm.HitModel.User);
 
             set.Bind(_tagsTextView)
                 .For(v => v.Text)
-                .To(vm => vm.Tags);
+                .To(vm => vm.HitModel.Tags);
 
             set.Bind(_likesTextView)
                 .For(v => v.Text)
-                .To(vm => vm.Likes);
+                .To(vm => vm.HitModel.Likes);
 
             set.Bind(_commentsTextView)
                 .For(v => v.Text)
-                .To(vm => vm.Comments);
+                .To(vm => vm.HitModel.Comments);
 
             set.Bind(_photoImageViewAsync)
                 .For(Constants.ImageAsyncBindingName)
-                .To(vm => vm.PhotoUrl);
+                .To(vm => vm.HitModel.LargeImageURL);
 
             set.Apply();
         }
