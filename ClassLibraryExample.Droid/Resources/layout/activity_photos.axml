@@ -26,6 +26,12 @@
 
     </LinearLayout>
 
+	<ProgressBar
+        android:id="@+id/progressBar_photos_view"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 
     <mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView
         android:id="@+id/recycler_photos_view"

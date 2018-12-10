@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ClassLibraryExample.Core.Pojo;
 using ClassLibraryExample.Core.Service;
@@ -14,9 +14,11 @@ namespace ClassLibraryExample.Core.ViewModels
 
         private readonly IMvxNavigationService _navigationService;
 
-        private ObservableCollection<HitModel> _lists;
+        private IList<HitModel> _listHits=new List<HitModel>();
 
         private string _searchMessage;
+
+        private int _loading = 8;
 
         private MvxCommand<HitModel> _clickItemCommand;
 
@@ -28,13 +30,23 @@ namespace ClassLibraryExample.Core.ViewModels
             _navigationService = navigationService;
         }
 
-        public ObservableCollection<HitModel> Lists
+        public IList<HitModel> ListHits
         {
-            get { return _lists; }
+            get { return _listHits; }
             set
             {
-                _lists = value;
-                RaisePropertyChanged(() => Lists);
+                _listHits = value;
+                RaisePropertyChanged(() => ListHits);
+            }
+        }
+
+        public int Loading
+        {
+            get { return _loading; }
+            set
+            {
+                _loading = value;
+                RaisePropertyChanged(() => Loading);
             }
         }
 
@@ -51,28 +63,36 @@ namespace ClassLibraryExample.Core.ViewModels
         public MvxCommand<HitModel> ClickItemCommand => _clickItemCommand =
             _clickItemCommand ?? new MvxCommand<HitModel>(OnClickItemCommand);
 
-
         public MvxCommand ClickSearchCommand => _clickSearchCommand =
-            _clickSearchCommand ?? new MvxCommand(async()=> Lists = await SearchRequestToApiAsync(SearchMessage));
+            _clickSearchCommand ?? new MvxCommand(async()=>await UpdateListHits(SearchMessage));
 
         public override async void ViewCreated()
         {
             base.ViewCreated();
 
-            Lists = await DefaultRequestToApiAsync();
+            await UpdateListHits(Constants.DefaultRequestToApi);
         }
 
-        public async Task<ObservableCollection<HitModel>> DefaultRequestToApiAsync()
+        private async Task UpdateListHits(string requestMessage)
         {
-            return new ObservableCollection<HitModel>(await _loadDataService.GetDataAsync(UrlApi(Constants.DefaultRequestToApi)));
+            Loading = 0;
+
+            ListHits.Clear();
+
+            foreach (var hit in await RequestToApiAsync(requestMessage))
+            {
+                ListHits.Add(hit);
+            }
+            
+            Loading = 8;
         }
 
-        public async Task<ObservableCollection<HitModel>> SearchRequestToApiAsync(string message)
+        private async Task<IEnumerable<HitModel>> RequestToApiAsync(string requestMessage)
         {
-            return new ObservableCollection<HitModel>(await _loadDataService.GetDataAsync(UrlApi(message)));
+            return await _loadDataService.GetDataAsync(UrlApi(requestMessage));
         }
-
-        public static string UrlApi(string message) => $"https://pixabay.com/api/?key=10828462-e34b53653a419d947bfaba5d3&q={message}&image_type=photo/";
+        
+        private static string UrlApi(string message) => $"https://pixabay.com/api/?key=10828462-e34b53653a419d947bfaba5d3&q={message}&image_type=photo/";
 
         private async void OnClickItemCommand(HitModel obj)
         {

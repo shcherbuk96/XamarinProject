@@ -13,10 +13,11 @@ namespace ClassLibraryExample.Droid.PhotosRecyclerView
     public class PhotosViewHolder : MvxRecyclerViewHolder
     {
         private readonly Action<HitModel> _itemClickAction;
+        private readonly View _itemView;
         public TextView Tags { get; set; }
         public TextView User { get; set; }
         public ImageViewAsync Image { get; set; }
-        private View _itemView;
+
 
         public PhotosViewHolder(View itemView, IMvxAndroidBindingContext context, Action<HitModel> itemClickAction) : base(
             itemView, context)
@@ -33,7 +34,16 @@ namespace ClassLibraryExample.Droid.PhotosRecyclerView
             _itemView.Click += OnClick;           
         }
 
-        public void Binding()
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _itemView.Click -= OnClick;
+            }
+
+            base.Dispose(disposing);
+        }
+        private void Binding()
         {
             this.DelayBind(() =>
             {
@@ -53,15 +63,6 @@ namespace ClassLibraryExample.Droid.PhotosRecyclerView
 
                 set.Apply();
             });
-        }
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _itemView.Click -= OnClick;
-            }
-
-            base.Dispose(disposing);
         }
         private void OnClick(object sender, EventArgs e)
         {
