@@ -7,11 +7,6 @@ namespace ClassLibraryExample.Core.ViewModels
     {
         private HitModel _hitModel;
 
-        public override void Prepare(HitModel parameter)
-        {
-            _hitModel = parameter;
-        }
-
         public HitModel HitModel
         {
             get { return _hitModel; }
@@ -21,5 +16,11 @@ namespace ClassLibraryExample.Core.ViewModels
                 RaisePropertyChanged(() => HitModel);
             }
         }
+
+        public override void Prepare(HitModel parameter)
+        {
+            _hitModel = parameter;
+        }
+        
     }
 }

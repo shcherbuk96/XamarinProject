@@ -10,7 +10,7 @@ using MonkeyCache.LiteDB;
 
 namespace ClassLibraryExample.Core.Service
 {
-    public class DataService : ILoadDataService
+    public class LoadDataService : ILoadDataService
     {
         public async Task<IEnumerable<HitModel>> GetDataAsync(string url)
         {
@@ -32,6 +32,7 @@ namespace ClassLibraryExample.Core.Service
                 if (responce != null)
                 {
                     Barrel.Current.Add(key: Constants.KeyDataBase, data: responce.Hits, expireIn: TimeSpan.FromDays(1));
+
                     return responce.Hits;
                 }
                 else

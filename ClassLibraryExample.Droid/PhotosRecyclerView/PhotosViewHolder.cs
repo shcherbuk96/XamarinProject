@@ -8,16 +8,15 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 
-namespace ClassLibraryExample.Droid.Adapter
+namespace ClassLibraryExample.Droid.PhotosRecyclerView
 {
     public class PhotosViewHolder : MvxRecyclerViewHolder
     {
         private readonly Action<HitModel> _itemClickAction;
-
-        private View _itemView;
         public TextView Tags { get; set; }
         public TextView User { get; set; }
         public ImageViewAsync Image { get; set; }
+        private View _itemView;
 
         public PhotosViewHolder(View itemView, IMvxAndroidBindingContext context, Action<HitModel> itemClickAction) : base(
             itemView, context)
@@ -55,12 +54,6 @@ namespace ClassLibraryExample.Droid.Adapter
                 set.Apply();
             });
         }
-
-        private void OnClick(object sender, EventArgs e)
-        {
-            _itemClickAction.Invoke((HitModel)DataContext);
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -69,6 +62,10 @@ namespace ClassLibraryExample.Droid.Adapter
             }
 
             base.Dispose(disposing);
+        }
+        private void OnClick(object sender, EventArgs e)
+        {
+            _itemClickAction.Invoke((HitModel)DataContext);
         }
     }
 }

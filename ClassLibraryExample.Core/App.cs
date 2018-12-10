@@ -10,7 +10,7 @@ namespace ClassLibraryExample.Core
     {
         public override void Initialize()
         {
-            Mvx.RegisterType<ILoadDataService, DataService>();
+            Mvx.RegisterType<ILoadDataService, LoadDataService>();
 
             CreatableTypes()
                 .EndingWith("Service")

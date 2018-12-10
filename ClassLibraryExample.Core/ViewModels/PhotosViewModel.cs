@@ -12,12 +12,15 @@ namespace ClassLibraryExample.Core.ViewModels
     {
         private readonly ILoadDataService _loadDataService;
 
+        private readonly IMvxNavigationService _navigationService;
+
         private ObservableCollection<HitModel> _lists;
 
         private string _searchMessage;
 
-        private readonly IMvxNavigationService _navigationService;
+        private MvxCommand<HitModel> _clickItemCommand;
 
+        private MvxCommand _clickSearchCommand;
 
         public PhotosViewModel(ILoadDataService loadDataService, IMvxNavigationService navigationService)
         {
@@ -25,14 +28,6 @@ namespace ClassLibraryExample.Core.ViewModels
             _navigationService = navigationService;
         }
 
-        private MvxCommand<HitModel> _clickItemCommand;
-        public MvxCommand<HitModel> ClickItemCommand => _clickItemCommand =
-            _clickItemCommand ?? new MvxCommand<HitModel>(OnClickItemCommand);
-
-        private async void OnClickItemCommand(HitModel obj)
-        {
-            await _navigationService.Navigate<DescriptionViewModel,HitModel>(obj);
-        }
         public ObservableCollection<HitModel> Lists
         {
             get { return _lists; }
@@ -50,16 +45,15 @@ namespace ClassLibraryExample.Core.ViewModels
             {
                 _searchMessage = value;
                 RaisePropertyChanged(() => SearchMessage);
-                
-                GetResponceFromSearchAsync();
             }
         }
 
-        public async void GetResponceFromSearchAsync()
-        {
-            Lists = await SearchRequestToApiAsync(_searchMessage);
-        }
+        public MvxCommand<HitModel> ClickItemCommand => _clickItemCommand =
+            _clickItemCommand ?? new MvxCommand<HitModel>(OnClickItemCommand);
 
+
+        public MvxCommand ClickSearchCommand => _clickSearchCommand =
+            _clickSearchCommand ?? new MvxCommand(async()=> Lists = await SearchRequestToApiAsync(SearchMessage));
 
         public override async void ViewCreated()
         {
@@ -79,5 +73,10 @@ namespace ClassLibraryExample.Core.ViewModels
         }
 
         public static string UrlApi(string message) => $"https://pixabay.com/api/?key=10828462-e34b53653a419d947bfaba5d3&q={message}&image_type=photo/";
+
+        private async void OnClickItemCommand(HitModel obj)
+        {
+            await _navigationService.Navigate<DescriptionViewModel, HitModel>(obj);
+        }
     }
 }

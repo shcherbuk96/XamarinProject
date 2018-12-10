@@ -61,8 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Binding\ImageAsyncBinding.cs" />
-    <Compile Include="Adapter\PhotosAdapter.cs" />
-    <Compile Include="Adapter\PhotosViewHolder.cs" />
+    <Compile Include="PhotosRecyclerView\PhotosAdapter.cs" />
+    <Compile Include="PhotosRecyclerView\PhotosViewHolder.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,6 +143,9 @@
     <AndroidResource Include="Resources\layout\activity_description.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\search_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -5,7 +5,7 @@ using ClassLibraryExample.Core.Pojo;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 
-namespace ClassLibraryExample.Droid.Adapter
+namespace ClassLibraryExample.Droid.PhotosRecyclerView
 {
     public class PhotosAdapter : MvxRecyclerAdapter
     {

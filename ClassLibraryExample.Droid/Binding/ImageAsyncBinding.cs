@@ -10,9 +10,7 @@ namespace ClassLibraryExample.Droid.Binding
         public ImageAsyncBinding(ImageViewAsync image) : base(image)
         {       
         }
-
         public override MvxBindingMode DefaultMode => MvxBindingMode.Default;
-
         protected override void SetValue(string value)
         {
             ImageService.Instance
