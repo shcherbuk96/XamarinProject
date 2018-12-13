@@ -14,11 +14,13 @@ namespace ClassLibraryExample.Core.ViewModels
 
         private readonly IMvxNavigationService _navigationService;
 
-        private IList<HitModel> _listHits=new List<HitModel>();
+        //private IList<HitModel> _listHits=new List<HitModel>();
+
+        private IEnumerable<HitModel> _listHits = new List<HitModel>();
 
         private string _searchMessage;
 
-        private int _loading = 8;
+        private int _loading = Constants.Gone;
 
         private MvxCommand<HitModel> _clickItemCommand;
 
@@ -30,7 +32,7 @@ namespace ClassLibraryExample.Core.ViewModels
             _navigationService = navigationService;
         }
 
-        public IList<HitModel> ListHits
+        public IEnumerable<HitModel> ListHits
         {
             get { return _listHits; }
             set
@@ -39,6 +41,16 @@ namespace ClassLibraryExample.Core.ViewModels
                 RaisePropertyChanged(() => ListHits);
             }
         }
+
+        //public IList<HitModel> ListHits
+        //{
+        //    get { return _listHits; }
+        //    set
+        //    {
+        //        _listHits = value;
+        //        RaisePropertyChanged(() => ListHits);
+        //    }
+        //}
 
         public int Loading
         {
@@ -69,22 +81,23 @@ namespace ClassLibraryExample.Core.ViewModels
         public override async void ViewCreated()
         {
             base.ViewCreated();
-
+            
             await UpdateListHits(Constants.DefaultRequestToApi);
         }
 
         private async Task UpdateListHits(string requestMessage)
         {
-            Loading = 0;
+            Loading = Constants.Visible;
 
-            ListHits.Clear();
+            ListHits = await RequestToApiAsync(requestMessage);
 
-            foreach (var hit in await RequestToApiAsync(requestMessage))
-            {
-                ListHits.Add(hit);
-            }
-            
-            Loading = 8;
+            //ListHits = new List<HitModel>(await RequestToApiAsync(requestMessage));
+            //foreach (var hit in await RequestToApiAsync(requestMessage))
+            //{
+            //    ListHits.Add(hit);
+            //}
+
+            Loading = Constants.Gone;
         }
 
         private async Task<IEnumerable<HitModel>> RequestToApiAsync(string requestMessage)

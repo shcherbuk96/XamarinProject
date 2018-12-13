@@ -7,5 +7,9 @@
 
         public const string ImageAsyncBindingName = "ImageAsyncBindingName";
         public const string DefaultRequestToApi = "cats";
+
+        public const int Visible = 0;
+        public const int Invisible = 4;
+        public const int Gone = 8;
     }
 }
