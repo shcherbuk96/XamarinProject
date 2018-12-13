@@ -70,6 +70,7 @@
     <Compile Include="SplashActivity.cs" />
     <Compile Include="Views\DescriptionView.cs" />
     <Compile Include="Views\PhotosView.cs" />
+    <Compile Include="ValueConverters\VisibleValueConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

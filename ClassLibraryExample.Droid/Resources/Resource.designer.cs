@@ -8176,6 +8176,15 @@ namespace ClassLibraryExample.Droid
 			// aapt resource value: 0x7f0b0161
 			public const int Base_Widget_Design_TabLayout = 2131427681;
 			
+			// aapt resource value: 0x7f0b0182
+			public const int DefaultMargins = 2131427714;
+			
+			// aapt resource value: 0x7f0b0183
+			public const int DescriptionConstTextViewMargins = 2131427715;
+			
+			// aapt resource value: 0x7f0b0184
+			public const int DescriptionTextViewMargins = 2131427716;
+			
 			// aapt resource value: 0x7f0b001e
 			public const int Platform_AppCompat = 2131427358;
 			
@@ -8259,6 +8268,9 @@ namespace ClassLibraryExample.Droid
 			
 			// aapt resource value: 0x7f0b0038
 			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131427384;
+			
+			// aapt resource value: 0x7f0b0185
+			public const int SearchButton = 2131427717;
 			
 			// aapt resource value: 0x7f0b0181
 			public const int SplashTheme = 2131427713;

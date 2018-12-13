@@ -12,4 +12,29 @@
     <item name="android:windowBackground">@drawable/splash</item>
   </style>
 
+  <style name="PhotosDefaultMargins">
+    <item name="android:layout_marginStart">8dp</item>
+    <item name="android:layout_marginLeft">8dp</item>
+    <item name="android:layout_marginEnd">8dp</item>
+    <item name="android:layout_marginRight">8dp</item>
+  </style>
+
+  <style name="PhotosSearchButton">
+    <item name="android:layout_width">36dp</item>
+    <item name="android:layout_height">36dp</item>
+    <item name="android:layout_marginEnd">8dp</item>
+    <item name="android:layout_marginRight">8dp</item>
+  </style>
+  
+  <style name="DescriptionConstTextViewMargins">
+    <item name="android:layout_marginStart">8dp</item>
+    <item name="android:layout_marginLeft">8dp</item>
+    <item name="android:layout_marginTop">8dp</item>
+  </style>
+
+  <style name="DescriptionTextViewMargins">
+    <item name="android:layout_marginStart">8dp</item>
+    <item name="android:layout_marginLeft">8dp</item>
+    <item name="android:layout_marginTop">8dp</item>
+  </style>
 </resources>

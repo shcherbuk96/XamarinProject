@@ -20,7 +20,7 @@ namespace ClassLibraryExample.Droid.Views
         private TextView _likesTextView;
         private TextView _commentsTextView;
         private Button _openWeButton;
-        
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -38,7 +38,7 @@ namespace ClassLibraryExample.Droid.Views
 
             _openWeButton.Click += ClickOpenPage;
         }
-        
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -79,7 +79,7 @@ namespace ClassLibraryExample.Droid.Views
         private void ClickOpenPage(object sender, EventArgs e)
         {
             var url = Android.Net.Uri.Parse(ViewModel?.HitModel.PageURL);
-            var webIntent = new Intent(Intent.ActionView, url );
+            var webIntent = new Intent(Intent.ActionView, url);
             StartActivity(webIntent);
         }
 

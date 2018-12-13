@@ -4,6 +4,7 @@ using Android.Widget;
 using ClassLibraryExample.Core.Pojo;
 using ClassLibraryExample.Core.ViewModels;
 using ClassLibraryExample.Droid.PhotosRecyclerView;
+using ClassLibraryExample.Droid.ValueConverters;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.RecyclerView;
@@ -29,7 +30,7 @@ namespace ClassLibraryExample.Droid.Views
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.activity_photos);
-            
+
             _recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.recycler_photos_view);
             _searchEdt = FindViewById<EditText>(Resource.Id.search_photos_view);
             _searchButton = FindViewById<Button>(Resource.Id.search_btn_photos_view);
@@ -57,11 +58,13 @@ namespace ClassLibraryExample.Droid.Views
                 .To(vm => vm.ClickSearchCommand);
 
             set.Bind(_progressBar)
-                .For(v=>v.Visibility)
-                .To(vm => vm.Loading);
+                .For(v => v.Visibility)
+                .To(vm => vm.Loading)
+                .WithConversion(new VisibleValueConverter());
 
             set.Apply();
         }
+
         private void OnCommand(HitModel hitModel)
         {
             ViewModel?.ClickItemCommand.Execute(hitModel);

@@ -14,13 +14,11 @@ namespace ClassLibraryExample.Core.ViewModels
 
         private readonly IMvxNavigationService _navigationService;
 
-        //private IList<HitModel> _listHits=new List<HitModel>();
-
         private IEnumerable<HitModel> _listHits = new List<HitModel>();
 
         private string _searchMessage;
 
-        private int _loading = Constants.Gone;
+        private bool _loading;
 
         private MvxCommand<HitModel> _clickItemCommand;
 
@@ -42,17 +40,7 @@ namespace ClassLibraryExample.Core.ViewModels
             }
         }
 
-        //public IList<HitModel> ListHits
-        //{
-        //    get { return _listHits; }
-        //    set
-        //    {
-        //        _listHits = value;
-        //        RaisePropertyChanged(() => ListHits);
-        //    }
-        //}
-
-        public int Loading
+        public bool Loading
         {
             get { return _loading; }
             set
@@ -87,17 +75,11 @@ namespace ClassLibraryExample.Core.ViewModels
 
         private async Task UpdateListHits(string requestMessage)
         {
-            Loading = Constants.Visible;
+            Loading = true;
 
             ListHits = await RequestToApiAsync(requestMessage);
 
-            //ListHits = new List<HitModel>(await RequestToApiAsync(requestMessage));
-            //foreach (var hit in await RequestToApiAsync(requestMessage))
-            //{
-            //    ListHits.Add(hit);
-            //}
-
-            Loading = Constants.Gone;
+            Loading = false;
         }
 
         private async Task<IEnumerable<HitModel>> RequestToApiAsync(string requestMessage)
