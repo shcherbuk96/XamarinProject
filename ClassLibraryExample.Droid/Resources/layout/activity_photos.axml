@@ -9,26 +9,18 @@
 
     <EditText
         android:id="@+id/search_photos_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-		style="@style/PhotosDefaultMargins"
+		style="@style/PhotosSearchEditText"
         local:layout_constraintEnd_toStartOf="@+id/search_btn_photos_view"
         local:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/search_btn_photos_view"
-        android:background="@drawable/search_icon"
 		style="@style/PhotosSearchButton"
         local:layout_constraintEnd_toEndOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBar_photos_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-		style="@style/PhotosDefaultMargins"
+		style="@style/PhotosProgressBar"
         local:layout_constraintBottom_toBottomOf="parent"
         local:layout_constraintEnd_toEndOf="parent"
         local:layout_constraintStart_toStartOf="parent"
@@ -36,9 +28,7 @@
 
     <mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView
 		android:id="@+id/recycler_photos_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-		style="@style/PhotosDefaultMargins"
+		style="@style/PhotosMvxRecyclerView"
         local:layout_constraintBottom_toBottomOf="parent"
         local:layout_constraintEnd_toEndOf="parent"
         local:layout_constraintStart_toStartOf="parent"

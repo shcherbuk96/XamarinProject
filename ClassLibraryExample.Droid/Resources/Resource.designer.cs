@@ -6009,6 +6009,9 @@ namespace ClassLibraryExample.Droid
 			// aapt resource value: 0x7f08008f
 			public const int compat_control_corner_material = 2131230863;
 			
+			// aapt resource value: 0x7f08009f
+			public const int description_photo_image_view_height = 2131230879;
+			
 			// aapt resource value: 0x7f080069
 			public const int design_appbar_elevation = 2131230825;
 			
@@ -6168,6 +6171,15 @@ namespace ClassLibraryExample.Droid
 			// aapt resource value: 0x7f080005
 			public const int item_touch_helper_swipe_escape_velocity = 2131230725;
 			
+			// aapt resource value: 0x7f08009d
+			public const int margin_padding_size_large = 2131230877;
+			
+			// aapt resource value: 0x7f08009c
+			public const int margin_padding_size_medium = 2131230876;
+			
+			// aapt resource value: 0x7f08009b
+			public const int margin_padding_size_small = 2131230875;
+			
 			// aapt resource value: 0x7f080090
 			public const int notification_action_icon_size = 2131230864;
 			
@@ -6212,6 +6224,9 @@ namespace ClassLibraryExample.Droid
 			
 			// aapt resource value: 0x7f08009a
 			public const int notification_top_pad_large_text = 2131230874;
+			
+			// aapt resource value: 0x7f08009e
+			public const int photos_search_btn_size = 2131230878;
 			
 			// aapt resource value: 0x7f080059
 			public const int tooltip_corner_radius = 2131230809;
@@ -8176,14 +8191,29 @@ namespace ClassLibraryExample.Droid
 			// aapt resource value: 0x7f0b0161
 			public const int Base_Widget_Design_TabLayout = 2131427681;
 			
-			// aapt resource value: 0x7f0b0182
-			public const int DefaultMargins = 2131427714;
+			// aapt resource value: 0x7f0b0187
+			public const int DescriptionConstTextView = 2131427719;
+			
+			// aapt resource value: 0x7f0b0189
+			public const int DescriptionOpenPageButton = 2131427721;
+			
+			// aapt resource value: 0x7f0b0186
+			public const int DescriptionPhotoImageView = 2131427718;
+			
+			// aapt resource value: 0x7f0b0188
+			public const int DescriptionTextView = 2131427720;
 			
 			// aapt resource value: 0x7f0b0183
-			public const int DescriptionConstTextViewMargins = 2131427715;
+			public const int PhotosMvxRecyclerView = 2131427715;
+			
+			// aapt resource value: 0x7f0b0185
+			public const int PhotosProgressBar = 2131427717;
 			
 			// aapt resource value: 0x7f0b0184
-			public const int DescriptionTextViewMargins = 2131427716;
+			public const int PhotosSearchButton = 2131427716;
+			
+			// aapt resource value: 0x7f0b0182
+			public const int PhotosSearchEditText = 2131427714;
 			
 			// aapt resource value: 0x7f0b001e
 			public const int Platform_AppCompat = 2131427358;
@@ -8268,9 +8298,6 @@ namespace ClassLibraryExample.Droid
 			
 			// aapt resource value: 0x7f0b0038
 			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131427384;
-			
-			// aapt resource value: 0x7f0b0185
-			public const int SearchButton = 2131427717;
 			
 			// aapt resource value: 0x7f0b0181
 			public const int SplashTheme = 2131427713;
