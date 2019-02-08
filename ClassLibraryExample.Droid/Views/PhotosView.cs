@@ -59,7 +59,7 @@ namespace ClassLibraryExample.Droid.Views
 
             set.Bind(_progressBar)
                 .For(v => v.Visibility)
-                .To(vm => vm.Loading)
+                .To(vm => vm.HiddenLoading)
                 .WithConversion(new VisibleValueConverter());
 
             set.Apply();

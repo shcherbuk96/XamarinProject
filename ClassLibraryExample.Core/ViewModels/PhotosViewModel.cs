@@ -18,7 +18,7 @@ namespace ClassLibraryExample.Core.ViewModels
 
         private string _searchMessage;
 
-        private bool _loading;
+        private bool _hiddenLoading;
 
         private MvxCommand<HitModel> _clickItemCommand;
 
@@ -40,13 +40,13 @@ namespace ClassLibraryExample.Core.ViewModels
             }
         }
 
-        public bool Loading
+        public bool HiddenLoading
         {
-            get { return _loading; }
+            get { return _hiddenLoading; }
             set
             {
-                _loading = value;
-                RaisePropertyChanged(() => Loading);
+                _hiddenLoading = value;
+                RaisePropertyChanged(() => HiddenLoading);
             }
         }
 
@@ -75,11 +75,11 @@ namespace ClassLibraryExample.Core.ViewModels
 
         private async Task UpdateListHits(string requestMessage)
         {
-            Loading = true;
+            HiddenLoading = false;
 
             ListHits = await RequestToApiAsync(requestMessage);
 
-            Loading = false;
+            HiddenLoading = true;
         }
 
         private async Task<IEnumerable<HitModel>> RequestToApiAsync(string requestMessage)

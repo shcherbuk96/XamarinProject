@@ -6,10 +6,8 @@
         public const string KeyDataBase = "XamarinProjectKey";
 
         public const string ImageAsyncBindingName = "ImageAsyncBindingName";
-        public const string DefaultRequestToApi = "cats";
+        public const string DefaultRequestToApi = "football";
 
-        public const int Visible = 0;
-        public const int Invisible = 4;
-        public const int Gone = 8;
+       
     }
 }

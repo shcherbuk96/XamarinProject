@@ -9,7 +9,7 @@ namespace ClassLibraryExample.Droid.ValueConverters
     {
         protected override ViewStates Convert(bool value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value ? ViewStates.Visible : ViewStates.Gone;
+            return value ? ViewStates.Gone : ViewStates.Visible;
         }
     }
 }
